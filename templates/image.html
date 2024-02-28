@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Sign Language Recognition</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <!-- Font Awesome icons (free version)-->
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    <!-- Google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
+    <!-- Core theme CSS (includes Bootstrap) {{ url_for('static', filename='css/styles.css') }}-->
+    <link href="../static/css/styles.css" rel="stylesheet" />
+</head>
+
+<body id="page-top">
+    <!-- Navigation-->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav2" style="opacity: 0.9;">
+        <div class="container">
+            <a class="navbar-brand" href="#page-top" style="font-family: Ink Free">Sign Language</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
+                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                Menu
+                <i class="fas fa-bars ms-1"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
+                    <li class="nav-item"><a class="nav-link" href="home.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact Us</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- Portfolio Grid-->
+    <section class="page-section bg-light" id="portfolio">
+        <div class="container">
+            <div class="text-center">
+                <h2 class="section-heading text-uppercase">ASL: Try yourself!</h2>
+                <h3 class="section-subheading text-muted">Explore the beauty of American Sign Language (ASL) with us.
+                    Make symbols with your hand and our powerful model will detect and return the Alphabet</h3>
+            </div>
+        </div>
+
+        
+        <hr><hr>
+        <div class="image-upload-container" style="background-color: rgba(255, 200, 0, 0.3); text-align: center;">
+            <br><br>
+           
+            <form id="image-upload-form" class="uploader" enctype="multipart/form-data">
+                <input type="file" id="image-input" name="fileUpload" accept="image/*" hidden/>
+              
+                <label for="image-input" id="file-drag">
+                  <div id="start" style="height: 250px; width: 450px; background-color: #ffffff; border-radius: 20px; border-style: dashed; border-color: black;">
+                    <i class="fa fa-download" aria-hidden="true" style=" margin-top: 20px; height: 75px; width: auto;"></i>
+                    <div style="margin-top: 5%; font-size: xx-large;">Select a file or drag here</div>
+                    <div id="notimage" class="hidden">Please select an image</div>
+                  </div>
+                </label>
+                <br><br>
+                <div id="image-preview"></div>
+                <br>
+                <button type="submit" class="btn btn-primary btn-xl text-uppercase">Upload Image</button>
+              </form>
+            <br><br>
+            <h2 class="section-heading text-uppercase" id="recognized-sign">Recognized Sign:</h2>
+            <div class="timeline-image">
+                <h2 id="sign-label" style="color: #ffc800;"></h2>
+            </div>
+            <br>
+        </div>
+    </section>
+    <hr><hr>
+
+    
+
+    <!-- Contact-->
+    <section class="page-section" id="contact">
+        <div class="container">
+            <div class="text-center">
+                <h2 class="section-heading text-uppercase">Contact Us</h2>
+                <h3 class="section-subheading text-muted">Do contact us if you have any suggestion!</h3>
+            </div>
+            <form id="contactForm" data-sb-form-api-token="API_TOKEN">
+                <div class="row align-items-stretch mb-5">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <!-- Name input-->
+                            <input class="form-control" id="name" type="text" placeholder="Your Name *"
+                                data-sb-validations="required" />
+                            <div class="invalid-feedback" data-sb-feedback="name:required">A name is required.</div>
+                        </div>
+                        <div class="form-group">
+                            <!-- Email address input-->
+                            <input class="form-control" id="email" type="email" placeholder="Your Email *"
+                                data-sb-validations="required,email" />
+                            <div class="invalid-feedback" data-sb-feedback="email:required">An email is required.</div>
+                            <div class="invalid-feedback" data-sb-feedback="email:email">Email is not valid.</div>
+                        </div>
+                        <div class="form-group mb-md-0">
+                            <!-- Phone number input-->
+                            <input class="form-control" id="phone" type="tel" placeholder="Your Phone *"
+                                data-sb-validations="required" />
+                            <div class="invalid-feedback" data-sb-feedback="phone:required">A phone number is required.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group form-group-textarea mb-md-0">
+                            <!-- Message input-->
+                            <textarea class="form-control" id="message" placeholder="Your Message *"
+                                data-sb-validations="required"></textarea>
+                            <div class="invalid-feedback" data-sb-feedback="message:required">A message is required.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Submit success message-->
+                <!---->
+                <!-- This is what your users will see when the form-->
+                <!-- has successfully submitted-->
+                <div class="d-none" id="submitSuccessMessage">
+                    <div class="text-center text-white mb-3">
+                        <div class="fw-bolder">Form submission successful!</div>
+                        To activate this form, sign up at
+                        <br />
+                        <a
+                            href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
+                    </div>
+                </div>
+                <!-- Submit error message-->
+                <!---->
+                <!-- This is what your users will see when there is-->
+                <!-- an error submitting the form-->
+                <div class="d-none" id="submitErrorMessage">
+                    <div class="text-center text-danger mb-3">Error sending message!</div>
+                </div>
+                <!-- Submit Button-->
+                <div class="text-center"><button class="btn btn-primary btn-xl text-uppercase disabled"
+                        id="submitButton" type="submit">Send Message</button></div>
+            </form>
+        </div>
+    </section>
+    <!-- Footer-->
+    <footer class="footer py-4">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-4 text-lg-start">Copyright &copy; Your Website 2023</div>
+                <div class="col-lg-4 my-3 my-lg-0">
+                    <a class="btn btn-dark btn-social mx-2" href="https://github.com/raunakraj17" aria-label="Github"><i
+                            class="fab fa-github"></i></a>
+                    <a class="btn btn-dark btn-social mx-2" href="https://www.instagram.com/raunakraj17/"
+                        aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a class="btn btn-dark btn-social mx-2" href="https://www.linkedin.com/in/raunak-raj-252377205/"
+                        aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+                <div class="col-lg-4 text-lg-end">
+                    <a class="link-dark text-decoration-none me-3" href="#!">Privacy Policy</a>
+                    <a class="link-dark text-decoration-none" href="#!">Terms of Use</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap core JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Core theme JS-->
+    <script src="../static/js/scripts.js" rel="text/javascript"></script>
+    <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+    <!-- * *                               SB Forms JS                               * *-->
+    <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
+    <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+    <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+</body>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script>
+    const imageInput = document.getElementById('image-input');
+    const imagePreview = document.getElementById('image-preview');
+    const recognizedSign = document.getElementById('recognized-sign');
+    const signLabel = document.getElementById('sign-label');
+
+    const labels = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T",
+        "U", "V", "W", "X", "Y", "Z"
+    ];
+    
+    imageInput.addEventListener('change', function () {
+        const file = imageInput.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                const img = document.createElement('img');
+                img.src = e.target.result;
+                img.style = "height: 300px; width: auto; border-radius: 20px;"
+                imagePreview.innerHTML = '';
+                imagePreview.appendChild(img);
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+
+    const imageUploadForm = document.getElementById('image-upload-form');
+    imageUploadForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        const formData = new FormData();
+        formData.append('image', imageInput.files[0]);
+
+        // Read the user-uploaded image as a base64-encoded string
+        const reader = new FileReader();
+        reader.onload = function (event) {
+            // Create a JSON object with the base64-encoded image data
+            const imgData = event.target.result;
+
+    // Send the form data to the server using jQuery AJAX
+    $.ajax({
+        type: "POST",
+        url: "{{ url_for('sign')}}", // Update the URL to match your server route
+        data: JSON.stringify({
+                    imgData
+                }),
+                contentType: "application/json",
+        success: function (data) {
+            recognizedSign.style.display = 'block';
+            signLabel.textContent = `${data.message}`;
+        },
+        error: function (error) {
+            console.error('Error:', error);
+        },
+    });
+};
+
+// Read the image file as a data URL
+reader.readAsDataURL(imageInput.files[0]);
+});
+
+
+
+
+function ekUpload(){
+  function Init() {
+
+    console.log("Upload Initialised");
+
+    var fileSelect    = document.getElementById('image-input'),
+        fileDrag      = document.getElementById('file-drag'),
+        submitButton  = document.getElementById('submit-button');
+
+    fileSelect.addEventListener('change', fileSelectHandler, false);
+
+    // Is XHR2 available?
+    var xhr = new XMLHttpRequest();
+    if (xhr.upload) {
+      // File Drop
+      fileDrag.addEventListener('dragover', fileDragHover, false);
+      fileDrag.addEventListener('dragleave', fileDragHover, false);
+      fileDrag.addEventListener('drop', fileSelectHandler, false);
+    }
+  }
+
+  function fileDragHover(e) {
+    var fileDrag = document.getElementById('file-drag');
+
+    e.stopPropagation();
+    e.preventDefault();
+
+    fileDrag.className = (e.type === 'dragover' ? 'hover' : 'modal-body image-input');
+  }
+
+  function fileSelectHandler(e) {
+    // Fetch FileList object
+    var files = e.target.files || e.dataTransfer.files;
+
+    // Cancel event and hover styling
+    fileDragHover(e);
+
+    // Process all File objects
+    for (var i = 0, f; f = files[i]; i++) {
+      parseFile(f);
+      uploadFile(f);
+    }
+  }
+
+  // Output
+  function output(msg) {
+    // Response
+    var m = document.getElementById('messages');
+    m.innerHTML = msg;
+  }
+
+  function parseFile(file) {
+
+    console.log(file.name);
+    output(
+      '<strong>' + encodeURI(file.name) + '</strong>'
+    );
+    
+    // var fileType = file.type;
+    // console.log(fileType);
+    var imageName = file.name;
+
+    var isGood = (/\.(?=gif|jpg|png|jpeg)/gi).test(imageName);
+    if (isGood) {
+      document.getElementById('start').classList.add("hidden");
+      document.getElementById('response').classList.remove("hidden");
+      document.getElementById('notimage').classList.add("hidden");
+      // Thumbnail Preview
+      document.getElementById('file-image').classList.remove("hidden");
+      document.getElementById('file-image').src = URL.createObjectURL(file);
+    }
+    else {
+      document.getElementById('file-image').classList.add("hidden");
+      document.getElementById('notimage').classList.remove("hidden");
+      document.getElementById('start').classList.remove("hidden");
+      document.getElementById('response').classList.add("hidden");
+      document.getElementById("image-upload-form").reset();
+    }
+  }
+
+  function setProgressMaxValue(e) {
+    var pBar = document.getElementById('file-progress');
+
+    if (e.lengthComputable) {
+      pBar.max = e.total;
+    }
+  }
+
+  function updateFileProgress(e) {
+    var pBar = document.getElementById('file-progress');
+
+    if (e.lengthComputable) {
+      pBar.value = e.loaded;
+    }
+  }
+
+  function uploadFile(file) {
+
+    var xhr = new XMLHttpRequest(),
+      fileInput = document.getElementById('class-roster-file'),
+      pBar = document.getElementById('file-progress'),
+      fileSizeLimit = 1024; // In MB
+    if (xhr.upload) {
+      // Check if file is less than x MB
+      if (file.size <= fileSizeLimit * 1024 * 1024) {
+        // Progress bar
+        pBar.style.display = 'inline';
+        xhr.upload.addEventListener('loadstart', setProgressMaxValue, false);
+        xhr.upload.addEventListener('progress', updateFileProgress, false);
+
+        // File received / failed
+        xhr.onreadystatechange = function(e) {
+          if (xhr.readyState == 4) {
+            // Everything is good!
+
+            // progress.className = (xhr.status == 200 ? "success" : "failure");
+            // document.location.reload(true);
+          }
+        };
+
+        // Start upload
+        xhr.open('POST', document.getElementById('image-upload-form').action, true);
+        xhr.setRequestHeader('X-File-Name', file.name);
+        xhr.setRequestHeader('X-File-Size', file.size);
+        xhr.setRequestHeader('Content-Type', 'multipart/form-data');
+        xhr.send(file);
+      } else {
+        output('Please upload a smaller file (< ' + fileSizeLimit + ' MB).');
+      }
+    }
+  }
+
+  // Check for the various File API support.
+  if (window.File && window.FileList && window.FileReader) {
+    Init();
+  } else {
+    document.getElementById('file-drag').style.display = 'none';
+  }
+}
+ekUpload();
+
+
+</script>
+
+</html>
